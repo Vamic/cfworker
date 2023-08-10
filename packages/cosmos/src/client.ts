@@ -407,6 +407,9 @@ export class CosmosClient {
     if (args.populateMetrics) {
       headers.set('x-ms-documentdb-populatequerymetrics', 'true');
     }
+    if (args.partitionKeyRangeId) {
+      headers.set('x-ms-documentdb-partitionkeyrangeid', args.partitionKeyRangeId);
+    }
     if (args.partitionKey) {
       headers.set(
         'x-ms-documentdb-partitionkey',
@@ -508,6 +511,7 @@ export interface QueryDocumentsArgs extends CommonGetListArgs {
   query: string;
   parameters?: QueryParameter[];
   partitionKey?: string;
+  partitionKeyRangeId?: string;
   enableCrossPartition?: boolean;
   populateMetrics?: boolean;
   enableScan?: boolean;
